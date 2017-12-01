@@ -30,12 +30,12 @@ func NewMapFileSystem(uid, gid int64, fs pathfs.FileSystem, sys syscallshim.Sysc
 }
 
 func (fs *mapFileSystem) OnMount(nodeFs *pathfs.PathNodeFs) {
-	if err := fs.syscall.Setreuid(CURRENT_ID, int(fs.uid)); err != nil {
-		log.Println("Setreuid failed!")
-		log.Fatal(err)
-	}
 	if err := fs.syscall.Setregid(CURRENT_ID, int(fs.gid)); err != nil {
 		log.Println("Setregid failed!")
+		log.Fatal(err)
+	}
+	if err := fs.syscall.Setreuid(CURRENT_ID, int(fs.uid)); err != nil {
+		log.Println("Setreuid failed!")
 		log.Fatal(err)
 	}
 	fs.FileSystem.OnMount(nodeFs)
