@@ -82,6 +82,12 @@ func (fs *mapFileSystem) Chmod(name string, mode uint32, context *fuse.Context) 
 }
 
 func (fs *mapFileSystem) Chown(name string, uid uint32, gid uint32, context *fuse.Context) (code fuse.Status) {
+	if uid == context.Uid {
+		uid = uint32(fs.uid)
+	}
+	if gid == context.Gid {
+		gid = uint32(fs.gid)
+	}
 	fs.setEffectiveIDs(int(fs.uid), int(fs.gid))
 	return fs.FileSystem.Chown(name, uid, gid, context)
 }
