@@ -36,13 +36,11 @@ func (fs *mapFileSystem) setEffectiveIDs(euid, egid int) (ouid, ogid int, err er
 	ogid = fs.syscall.Getegid()
 	if egid != ogid {
 		if err := fs.syscall.Setregid(CURRENT_ID, int(fs.gid)); err != nil {
-			log.Printf("Setregid failed. %s\n", err.Error())
 			return ouid, ogid, err
 		}
 	}
 	if euid != ouid {
 		if err := fs.syscall.Setreuid(CURRENT_ID, int(fs.uid)); err != nil {
-			log.Printf("Setreuid failed. %s\n", err.Error())
 			return ouid, ogid, err
 		}
 	}
