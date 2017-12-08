@@ -17,7 +17,7 @@ func TestLocalbroker(t *testing.T) {
 
 var _ = SynchronizedBeforeSuite(func() []byte {
 	var err error
-	binaryPath, err = gexec.Build("github.com/julian-hj/mapfs", "-race")
+	binaryPath, err = gexec.Build("code.cloudfoundry.org/mapfs", "-race")
 	Expect(err).NotTo(HaveOccurred())
 
 	return []byte(binaryPath)

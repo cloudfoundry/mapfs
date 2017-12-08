@@ -14,7 +14,7 @@ import (
 	"github.com/hanwen/go-fuse/fuse"
 	"github.com/hanwen/go-fuse/fuse/nodefs"
 	"github.com/hanwen/go-fuse/fuse/pathfs"
-	"github.com/julian-hj/mapfs/mapfs"
+	"code.cloudfoundry.org/mapfs/mapfs"
 	"code.cloudfoundry.org/goshims/syscallshim"
 )
 
