@@ -21,15 +21,14 @@ import (
 func main() {
 	log.SetFlags(log.Lmicroseconds)
 
-	debug := flag.Bool("debug", false, "print debugging messages.")
-	uid := flag.Int64("uid", -1, "POSIX UID to map to")
-	gid := flag.Int64("gid", -1, "POSIX GID to map to")
+	debug := flag.Bool("debug", false, "")
+	uid := flag.Int64("uid", -1, "")
+	gid := flag.Int64("gid", -1, "")
 
 	flag.Parse()
-	if flag.NArg() < 2 {
-		fmt.Printf("usage: %s MOUNTPOINT ORIGINAL\n", path.Base(os.Args[0]))
-		fmt.Printf("\noptions:\n")
-		flag.PrintDefaults()
+	if flag.NArg() < 2 || *uid <= 0 || *gid <= 0 {
+		fmt.Printf("usage: %s -uid=UID -gid=GID [-debug] MOUNTPOINT ORIGINAL\n", path.Base(os.Args[0]))
+		fmt.Printf("UID and GID must be > 0")
 		os.Exit(2)
 	}
 

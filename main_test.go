@@ -115,7 +115,31 @@ var _ = Describe("mapfs Main", func() {
 			driverRunner := failRunner{
 				Name:       "mapfs",
 				Command:    exec.Command(binaryPath, args...),
-				StartCheck: "usage: mapfs MOUNTPOINT ORIGINAL",
+				StartCheck: "usage: mapfs -uid=UID -gid=GID [-debug] MOUNTPOINT ORIGINAL",
+			}
+			process = ifrit.Invoke(driverRunner)
+
+		})
+
+		It("shows usage again", func() {
+			var args []string = []string{"/foo", "/bar"}
+
+			driverRunner := failRunner{
+				Name:       "mapfs",
+				Command:    exec.Command(binaryPath, args...),
+				StartCheck: "usage: mapfs -uid=UID -gid=GID [-debug] MOUNTPOINT ORIGINAL",
+			}
+			process = ifrit.Invoke(driverRunner)
+
+		})
+
+		It("shows usage even still", func() {
+			var args []string = []string{"uid=0", "gid=0", "/foo", "/bar"}
+
+			driverRunner := failRunner{
+				Name:       "mapfs",
+				Command:    exec.Command(binaryPath, args...),
+				StartCheck: "usage: mapfs -uid=UID -gid=GID [-debug] MOUNTPOINT ORIGINAL",
 			}
 			process = ifrit.Invoke(driverRunner)
 
