@@ -24,10 +24,13 @@ func main() {
 	debug := flag.Bool("debug", false, "")
 	uid := flag.Int64("uid", -1, "")
 	gid := flag.Int64("gid", -1, "")
+	fsName := flag.String("fsname", "mapfs", "")
+	autoCache := flag.Bool("auto_cache", false, "")
+
 
 	flag.Parse()
 	if flag.NArg() < 2 || *uid <= 0 || *gid <= 0 {
-		fmt.Printf("usage: %s -uid=UID -gid=GID [-debug] MOUNTPOINT ORIGINAL\n", path.Base(os.Args[0]))
+		fmt.Printf("usage: %s -uid UID -gid GID [-fsname FSNAME] [-auto_cache] [-debug] MOUNTPOINT ORIGINAL\n", path.Base(os.Args[0]))
 		fmt.Printf("UID and GID must be > 0")
 		os.Exit(2)
 	}
@@ -44,15 +47,22 @@ func main() {
 		EntryTimeout:    time.Second,
 	}
 
+	fuseOpts := []string{}
+	if *autoCache {
+		fuseOpts = append(fuseOpts, "auto_cache")
+	}
 	pathFs := pathfs.NewPathNodeFs(finalFs, &pathfs.PathNodeFsOptions{})
 	conn := nodefs.NewFileSystemConnector(pathFs.Root(), opts)
 	mountPoint := flag.Arg(0)
 	origAbs, _ := filepath.Abs(orig)
 	mOpts := &fuse.MountOptions{
 		AllowOther: true,
-		Name:       "mapfs",
+		Name:       *fsName,
 		FsName:     origAbs,
 		Debug:      *debug,
+	}
+	if len(fuseOpts) > 0 {
+		mOpts.Options = fuseOpts
 	}
 	state, err := fuse.NewServer(conn.RawFS(), mountPoint, mOpts)
 	if err != nil {
