@@ -49,9 +49,10 @@ func main() {
 
 	fuseOpts := []string{}
   // TODO -- "auto_cache is unsupported by fusermount?
-	//if *autoCache {
-	//	fuseOpts = append(fuseOpts, "auto_cache")
-	//}
+	if *autoCache {
+		fmt.Println("warning -- auto_cache flag ignored as it is unsupported in fusermount")
+		// fuseOpts = append(fuseOpts, "auto_cache")
+	}
 	pathFs := pathfs.NewPathNodeFs(finalFs, &pathfs.PathNodeFsOptions{})
 	conn := nodefs.NewFileSystemConnector(pathFs.Root(), opts)
 	mountPoint := flag.Arg(0)
