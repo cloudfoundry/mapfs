@@ -2,7 +2,9 @@ package main
 
 import (
 	"io"
+	"io/ioutil"
 	"os/exec"
+	"path/filepath"
 
 	"fmt"
 
@@ -146,6 +148,50 @@ var _ = Describe("mapfs Main", func() {
 
 		AfterEach(func() {
 			ginkgomon.Kill(process) // this is only if incorrect implementation leaves process running
+		})
+	})
+
+	Context("when starting succesfully", func() {
+		var (
+			driverProcess ifrit.Process
+			flockProcess  ifrit.Process
+		)
+
+		AfterEach(func() {
+			ginkgomon.Kill(driverProcess)
+			ginkgomon.Kill(flockProcess)
+		})
+
+		It("flock works", func() {
+			srcDir, err := ioutil.TempDir("", "src")
+			Expect(err).NotTo(HaveOccurred())
+			targetDir, err := ioutil.TempDir("", "target")
+			Expect(err).NotTo(HaveOccurred())
+
+			driverRunner := ginkgomon.New(
+				ginkgomon.Config{
+					Name:       "mapfs",
+					Command:    exec.Command(binaryPath, "uid", "0", "gid", "0", targetDir, srcDir),
+					StartCheck: "Mounted!",
+				},
+			)
+			driverProcess = ifrit.Invoke(driverRunner)
+
+			flockRunner1 := ginkgomon.New(
+				ginkgomon.Config{
+					Name:       "flock",
+					Command:    exec.Command("flock", filepath.Join(targetDir, "lockfile"), "&&", "echo", "success1", ";", "sleep", "100"),
+					StartCheck: "success1",
+				},
+			)
+			flockProcess = ifrit.Invoke(flockRunner1)
+
+			flockCommand := exec.Command("flock", "-n", filepath.Join(targetDir, "lockfile"))
+			flockSession, err := gexec.Start(flockCommand, GinkgoWriter, GinkgoWriter)
+			Expect(err).NotTo(HaveOccurred())
+			<-flockSession.Exited
+
+			Expect(flockSession.ExitCode()).To(Equal(1))
 		})
 	})
 })
