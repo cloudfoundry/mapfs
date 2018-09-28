@@ -1,32 +1,28 @@
 package mapfs_test
 
 import (
-	"code.cloudfoundry.org/lager/lagertest"
+	"time"
 
-	"code.cloudfoundry.org/lager"
+	"code.cloudfoundry.org/goshims/syscallshim/syscall_fake"
+	"code.cloudfoundry.org/mapfs/mapfs"
+	"code.cloudfoundry.org/mapfs/mapfs_fakes"
+	"github.com/hanwen/go-fuse/fuse"
+	"github.com/hanwen/go-fuse/fuse/pathfs"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"code.cloudfoundry.org/mapfs/mapfs_fakes"
-	"github.com/hanwen/go-fuse/fuse/pathfs"
-	"code.cloudfoundry.org/mapfs/mapfs"
-	"github.com/hanwen/go-fuse/fuse"
-	"code.cloudfoundry.org/goshims/syscallshim/syscall_fake"
-	"time"
 )
 
 var _ = Describe("mapfs", func() {
 	var (
-		logger lager.Logger
-		mapFS pathfs.FileSystem
+		mapFS    pathfs.FileSystem
 		uid, gid int64
 
-		fakeFS *mapfs_fakes.FakeFileSystem
+		fakeFS      *mapfs_fakes.FakeFileSystem
 		fakeSyscall *syscall_fake.FakeSyscall
-		context *fuse.Context
+		context     *fuse.Context
 	)
 
 	BeforeEach(func() {
-		logger = lagertest.NewTestLogger("test-fs")
 		fakeFS = &mapfs_fakes.FakeFileSystem{}
 		fakeSyscall = &syscall_fake.FakeSyscall{}
 		uid = 5
