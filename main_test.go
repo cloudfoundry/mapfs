@@ -171,22 +171,26 @@ var _ = Describe("mapfs Main", func() {
 			driverRunner := ginkgomon.New(
 				ginkgomon.Config{
 					Name:       "mapfs",
-					Command:    exec.Command(binaryPath, "uid", "0", "gid", "0", targetDir, srcDir),
+					Command:    exec.Command(binaryPath, "-uid", "1000", "-gid", "1000", targetDir, srcDir),
 					StartCheck: "Mounted!",
 				},
 			)
+
 			driverProcess = ifrit.Invoke(driverRunner)
+
+			lockPath := filepath.Join(targetDir, "lockfile")
+			os.OpenFile(lockPath, os.O_RDONLY|os.O_CREATE, 0666)
 
 			flockRunner1 := ginkgomon.New(
 				ginkgomon.Config{
 					Name:       "flock",
-					Command:    exec.Command("flock", filepath.Join(targetDir, "lockfile"), "&&", "echo", "success1", ";", "sleep", "100"),
+					Command:    exec.Command("flock", lockPath, "-c", "echo success1 && sleep 1"),
 					StartCheck: "success1",
 				},
 			)
 			flockProcess = ifrit.Invoke(flockRunner1)
 
-			flockCommand := exec.Command("flock", "-n", filepath.Join(targetDir, "lockfile"))
+			flockCommand := exec.Command("flock", "-n", lockPath, "-c", "echo ok")
 			flockSession, err := gexec.Start(flockCommand, GinkgoWriter, GinkgoWriter)
 			Expect(err).NotTo(HaveOccurred())
 			<-flockSession.Exited
