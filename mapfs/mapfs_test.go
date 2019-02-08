@@ -10,6 +10,7 @@ import (
 	"github.com/hanwen/go-fuse/fuse/pathfs"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
+	"golang.org/x/sys/unix"
 )
 
 var _ = Describe("mapfs", func() {
@@ -33,7 +34,7 @@ var _ = Describe("mapfs", func() {
 	})
 
 	JustBeforeEach(func() {
-		mapFS = mapfs.NewMapFileSystem(uid, gid, fakeFS, fakeSyscall)
+		mapFS = mapfs.NewMapFileSystem(uid, gid, fakeFS, "/tmp", fakeSyscall)
 	})
 
 	Context("when there is a mapfs", func() {
@@ -90,10 +91,19 @@ var _ = Describe("mapfs", func() {
 		})
 
 		Context(".Access", func() {
-			It("passes the function through to the underlying filesystem", func() {
+			It("no longer passes the function through to the underlying filesystem", func() {
 				mapFS.Access("foo", uint32(0777), context)
 
-				Expect(fakeFS.AccessCallCount()).To(Equal(1))
+				Expect(fakeFS.AccessCallCount()).To(Equal(0))
+			})
+			It("passes the function through to syscall Faccessat to test against the effective user", func() {
+				mapFS.Access("foo", uint32(0777), context)
+
+				Expect(fakeSyscall.FaccessatCallCount()).To(Equal(1))
+				_, path, mode, flags := fakeSyscall.FaccessatArgsForCall(0)
+				Expect(path).To(Equal("/tmp/foo"))
+				Expect(mode).To(Equal(uint32(0777)))
+				Expect(flags).To(Equal(unix.AT_EACCESS))
 			})
 		})
 

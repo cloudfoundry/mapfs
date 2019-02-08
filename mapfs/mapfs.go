@@ -2,12 +2,16 @@ package mapfs
 
 import (
 	"log"
+	"path/filepath"
+
+	"time"
+
+	"golang.org/x/sys/unix"
 
 	"code.cloudfoundry.org/goshims/syscallshim"
 	"github.com/hanwen/go-fuse/fuse"
 	"github.com/hanwen/go-fuse/fuse/nodefs"
 	"github.com/hanwen/go-fuse/fuse/pathfs"
-	"time"
 )
 
 const (
@@ -20,14 +24,23 @@ type mapFileSystem struct {
 	pathfs.FileSystem
 	uid, gid int64
 	syscall  syscallshim.Syscall
+	root     string
 }
 
-func NewMapFileSystem(uid, gid int64, fs pathfs.FileSystem, sys syscallshim.Syscall) pathfs.FileSystem {
+func NewMapFileSystem(uid, gid int64, fs pathfs.FileSystem, root string, sys syscallshim.Syscall) pathfs.FileSystem {
+	// Make sure the Root path is absolute to avoid problems when the
+	// application changes working directory.
+	root, err := filepath.Abs(root)
+	if err != nil {
+		panic(err)
+	}
+
 	return &mapFileSystem{
 		FileSystem: fs,
 		uid:        uid,
 		gid:        gid,
 		syscall:    sys,
+		root:       root,
 	}
 }
 
@@ -46,6 +59,10 @@ func (fs *mapFileSystem) setEffectiveIDs(euid, egid int) (ouid, ogid int, err er
 	}
 
 	return ouid, ogid, nil
+}
+
+func (fs *mapFileSystem) getPath(relPath string) string {
+	return filepath.Join(fs.root, relPath)
 }
 
 func (fs *mapFileSystem) OnMount(nodeFs *pathfs.PathNodeFs) {
@@ -102,7 +119,7 @@ func (fs *mapFileSystem) Truncate(name string, size uint64, context *fuse.Contex
 
 func (fs *mapFileSystem) Access(name string, mode uint32, context *fuse.Context) (code fuse.Status) {
 	fs.setEffectiveIDs(int(fs.uid), int(fs.gid))
-	return fs.FileSystem.Access(name, mode, context)
+	return fuse.ToStatus(fs.syscall.Faccessat(0, fs.getPath(name), mode, unix.AT_EACCESS))
 }
 
 func (fs *mapFileSystem) Link(oldName string, newName string, context *fuse.Context) (code fuse.Status) {
