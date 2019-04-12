@@ -11,11 +11,11 @@ import (
 	"path/filepath"
 	"time"
 
-	"code.cloudfoundry.org/goshims/syscallshim"
-	"code.cloudfoundry.org/mapfs/mapfs"
 	"github.com/hanwen/go-fuse/fuse"
 	"github.com/hanwen/go-fuse/fuse/nodefs"
 	"github.com/hanwen/go-fuse/fuse/pathfs"
+	"code.cloudfoundry.org/mapfs/mapfs"
+	"code.cloudfoundry.org/goshims/syscallshim"
 )
 
 func main() {
@@ -27,6 +27,7 @@ func main() {
 	fsName := flag.String("fsname", "mapfs", "")
 	autoCache := flag.Bool("auto_cache", false, "")
 
+
 	flag.Parse()
 	if flag.NArg() < 2 || *uid <= 0 || *gid <= 0 {
 		fmt.Printf("usage: %s -uid UID -gid GID [-fsname FSNAME] [-auto_cache] [-debug] MOUNTPOINT ORIGINAL\n", path.Base(os.Args[0]))
@@ -34,11 +35,9 @@ func main() {
 		os.Exit(2)
 	}
 
-	var finalFs pathfs.FileSystem
 	orig := flag.Arg(1)
 	loopbackfs := pathfs.NewLoopbackFileSystem(orig)
-	mapfs := mapfs.NewMapFileSystem(*uid, *gid, loopbackfs, orig, &syscallshim.SyscallShim{})
-	finalFs = mapfs
+	finalFs := mapfs.NewMapFileSystem(*uid, *gid, loopbackfs, orig, &syscallshim.SyscallShim{})
 
 	opts := &nodefs.Options{
 		NegativeTimeout: time.Second,
@@ -47,11 +46,10 @@ func main() {
 	}
 
 	fuseOpts := []string{}
-	// TODO -- "auto_cache is unsupported by fusermount?
 	if *autoCache {
 		fmt.Println("warning -- auto_cache flag ignored as it is unsupported in fusermount")
-		// fuseOpts = append(fuseOpts, "auto_cache")
 	}
+
 	pathFs := pathfs.NewPathNodeFs(finalFs, &pathfs.PathNodeFsOptions{})
 	conn := nodefs.NewFileSystemConnector(pathFs.Root(), opts)
 	mountPoint := flag.Arg(0)
