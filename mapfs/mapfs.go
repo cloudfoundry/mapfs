@@ -3,6 +3,7 @@ package mapfs
 import (
 	"log"
 	"path/filepath"
+	"syscall"
 
 	"time"
 
@@ -25,6 +26,7 @@ type mapFileSystem struct {
 	uid, gid int64
 	syscall  syscallshim.Syscall
 	root     string
+	disableXAttrs bool
 }
 
 func NewMapFileSystem(uid, gid int64, fs pathfs.FileSystem, root string, sys syscallshim.Syscall) pathfs.FileSystem {
@@ -36,11 +38,12 @@ func NewMapFileSystem(uid, gid int64, fs pathfs.FileSystem, root string, sys sys
 	}
 
 	return &mapFileSystem{
-		FileSystem: fs,
-		uid:        uid,
-		gid:        gid,
-		syscall:    sys,
-		root:       root,
+		FileSystem:    fs,
+		uid:           uid,
+		gid:           gid,
+		syscall:       sys,
+		root:          root,
+		disableXAttrs: false,
 	}
 }
 
@@ -153,8 +156,16 @@ func (fs *mapFileSystem) Unlink(name string, context *fuse.Context) (code fuse.S
 }
 
 func (fs *mapFileSystem) GetXAttr(name string, attribute string, context *fuse.Context) (data []byte, code fuse.Status) {
+	if fs.disableXAttrs == true {
+		return nil, fuse.Status(syscall.ENOTSUP)
+	}
+
 	fs.setEffectiveIDs(int(fs.uid), int(fs.gid))
-	return fs.FileSystem.GetXAttr(name, attribute, context)
+	xAttrBytes, code := fs.FileSystem.GetXAttr(name, attribute, context)
+	if code == fuse.Status(syscall.ENOTSUP) {
+		fs.disableXAttrs = true
+	}
+	return xAttrBytes, code
 }
 
 func (fs *mapFileSystem) ListXAttr(name string, context *fuse.Context) (attributes []string, code fuse.Status) {

@@ -1,6 +1,7 @@
 package mapfs_test
 
 import (
+	"syscall"
 	"time"
 
 	"code.cloudfoundry.org/goshims/syscallshim/syscall_fake"
@@ -160,6 +161,19 @@ var _ = Describe("mapfs", func() {
 				mapFS.GetXAttr("foo", "bar", context)
 
 				Expect(fakeFS.GetXAttrCallCount()).To(Equal(1))
+			})
+
+			Context("GetXAttr is not supported by the underlying filesystem", func() {
+				JustBeforeEach(func() {
+					fakeFS.GetXAttrReturns(nil, fuse.Status(syscall.ENOTSUP))
+					mapFS.GetXAttr("foo", "bar", context)
+					Expect(fakeFS.GetXAttrCallCount()).To(Equal(1))
+				})
+
+				It("should not pass the function through to the underlying filesystem", func() {
+					mapFS.GetXAttr("foo", "bar", context)
+					Expect(fakeFS.GetXAttrCallCount()).To(Equal(1))
+				})
 			})
 		})
 
