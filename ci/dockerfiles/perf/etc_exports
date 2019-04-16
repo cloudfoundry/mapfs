@@ -1,0 +1,3 @@
+/                    0.0.0.0/0(ro,fsid=0,async)
+/export              0.0.0.0/0(rw,no_subtree_check,async)
+/export/share1       0.0.0.0/0(rw,nohide,no_subtree_check,async)
