@@ -80,7 +80,7 @@ var _ = Describe("Perf", func() {
 			writeDataToMountedDirectory(mapfsDirectory)
 		})
 
-		Expect(highLatencyMapfs.Nanoseconds()).To(BeNumerically("<", int64(float64(highLatencyBenchmark.Nanoseconds())*1.6)))
-		Expect(lowLatencyMapfs.Nanoseconds()).To(BeNumerically("<", int64(float64(lowLatencyBenchmark.Nanoseconds())*1.6)))
+		Expect(highLatencyMapfs.Nanoseconds()).To(BeNumerically("<", int64(float64(highLatencyBenchmark.Nanoseconds())*2.0)))
+		Expect(lowLatencyMapfs.Nanoseconds()).To(BeNumerically("<", int64(float64(lowLatencyBenchmark.Nanoseconds())*10.0)))
 	}, 3)
 })
