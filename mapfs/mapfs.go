@@ -4,7 +4,6 @@ import (
 	"log"
 	"path/filepath"
 	"syscall"
-
 	"time"
 
 	"golang.org/x/sys/unix"
