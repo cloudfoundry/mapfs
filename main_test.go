@@ -1,6 +1,9 @@
 package main
 
 import (
+	"code.cloudfoundry.org/goshims/bufioshim"
+	"code.cloudfoundry.org/goshims/osshim"
+	"code.cloudfoundry.org/volumedriver/mountchecker"
 	"io"
 	"io/ioutil"
 	"os/exec"
@@ -167,6 +170,7 @@ var _ = Describe("mapfs Main", func() {
 			Expect(err).NotTo(HaveOccurred())
 			targetDir, err := ioutil.TempDir("", "target")
 			Expect(err).NotTo(HaveOccurred())
+			Expect(os.Chmod(srcDir, os.ModePerm)).To(Succeed())
 
 			driverRunner := ginkgomon.New(
 				ginkgomon.Config{
@@ -178,8 +182,16 @@ var _ = Describe("mapfs Main", func() {
 
 			driverProcess = ifrit.Invoke(driverRunner)
 
+			By("ensure that mapfs has mounted correctly", func() {
+				mountChecker := mountchecker.NewChecker(&bufioshim.BufioShim{}, &osshim.OsShim{})
+				mounted, err := mountChecker.Exists(targetDir)
+				Expect(err).NotTo(HaveOccurred())
+				Expect(mounted).To(BeTrue())
+			})
+
 			lockPath := filepath.Join(targetDir, "lockfile")
-			os.OpenFile(lockPath, os.O_RDONLY|os.O_CREATE, 0666)
+			_, err = os.OpenFile(lockPath, os.O_RDONLY|os.O_CREATE, 0666)
+			Expect(err).NotTo(HaveOccurred())
 
 			flockRunner1 := ginkgomon.New(
 				ginkgomon.Config{
