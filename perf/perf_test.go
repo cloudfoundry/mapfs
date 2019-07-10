@@ -21,9 +21,6 @@ var _ = Describe("Perf", func() {
 	BeforeEach(func() {
 		var err error
 
-		err = os.Chmod("/data/nfs", os.ModePerm)
-		Expect(err).NotTo(HaveOccurred())
-
 		nativeDirectory, err = ioutil.TempDir(os.TempDir(), "native")
 		Expect(err).NotTo(HaveOccurred())
 		mapfsDirectory, err = ioutil.TempDir(os.TempDir(), "mapfs")
