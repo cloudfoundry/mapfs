@@ -28,7 +28,7 @@ var _ = BeforeSuite(func() {
 	binaryPath, err = gexec.Build("code.cloudfoundry.org/mapfs", "-race")
 	Expect(err).NotTo(HaveOccurred())
 
-	startNfsCmd := exec.Command("/opt/start_nfs.sh")
+	startNfsCmd := exec.Command("/start.sh")
 	nfsServerSession, err = gexec.Start(startNfsCmd, GinkgoWriter, GinkgoWriter)
 	Expect(err).NotTo(HaveOccurred())
 	Eventually(nfsServerSession, 5*time.Second).Should(gbytes.Say("NFS SERVER INITIALIZED"))
