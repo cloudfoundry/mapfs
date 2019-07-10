@@ -22,6 +22,8 @@ var binaryPath string
 
 var nfsServerSession *gexec.Session
 var _ = BeforeSuite(func() {
+	SetDefaultEventuallyTimeout(10 * time.Second)
+
 	var err error
 	binaryPath, err = gexec.Build("code.cloudfoundry.org/mapfs", "-race")
 	Expect(err).NotTo(HaveOccurred())
