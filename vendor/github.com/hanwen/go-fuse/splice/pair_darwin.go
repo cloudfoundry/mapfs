@@ -4,6 +4,8 @@
 
 package splice
 
+import ()
+
 func (p *Pair) LoadFromAt(fd uintptr, sz int, off int64) (int, error) {
 	panic("not implemented")
 	return 0, nil

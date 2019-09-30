@@ -4,7 +4,7 @@
 
 // +build ignore
 
-package htmlindex
+package main
 
 import (
 	"bytes"

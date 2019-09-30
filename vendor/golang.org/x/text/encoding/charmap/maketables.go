@@ -4,7 +4,7 @@
 
 // +build ignore
 
-package charmap
+package main
 
 import (
 	"bufio"

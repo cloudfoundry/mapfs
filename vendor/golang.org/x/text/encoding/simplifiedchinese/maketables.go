@@ -4,7 +4,7 @@
 
 // +build ignore
 
-package simplifiedchinese
+package main
 
 // This program generates tables.go:
 //	go run maketables.go | gofmt > tables.go
