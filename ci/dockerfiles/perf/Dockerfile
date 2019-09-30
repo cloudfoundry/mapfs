@@ -31,6 +31,8 @@ ENV GOROOT=/usr/local/go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 RUN go get github.com/onsi/ginkgo/ginkgo
+ENV GO111MODULE=on
+ENV GOFLAGS=-mod=vendor
 
 RUN sed -i 's/VFS/MEM/' /start.sh
 RUN sed -i 's#^EXPORT#NFSV4 \{ Graceless = true; \}\nEXPORT#' /start.sh
