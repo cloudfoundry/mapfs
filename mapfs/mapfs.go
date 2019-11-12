@@ -8,22 +8,22 @@ import (
 	"golang.org/x/sys/unix"
 
 	"code.cloudfoundry.org/goshims/syscallshim"
-	"github.com/hanwen/go-fuse/fuse"
-	"github.com/hanwen/go-fuse/fuse/nodefs"
-	"github.com/hanwen/go-fuse/fuse/pathfs"
+	"github.com/hanwen/go-fuse/v2/fuse"
+	"github.com/hanwen/go-fuse/v2/fuse/nodefs"
+	"github.com/hanwen/go-fuse/v2/fuse/pathfs"
 )
 
 const (
 	CURRENT_ID = -1
 )
 
-//go:generate counterfeiter -o ../mapfs_fakes/fake_file_system.go  ../../../hanwen/go-fuse/fuse/pathfs FileSystem
+//go:generate counterfeiter -o ../mapfs_fakes/fake_file_system.go  ../vendor/github.com/hanwen/go-fuse/v2/fuse/pathfs FileSystem
 
 type mapFileSystem struct {
 	pathfs.FileSystem
-	uid, gid int64
-	syscall  syscallshim.Syscall
-	root     string
+	uid, gid      int64
+	syscall       syscallshim.Syscall
+	root          string
 	disableXAttrs bool
 }
 

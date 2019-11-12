@@ -5,12 +5,13 @@ code.cloudfoundry.org/goshims/osshim
 code.cloudfoundry.org/goshims/syscallshim/syscall_fake
 # code.cloudfoundry.org/volumedriver v0.0.0-20190624205815-521b41315311
 code.cloudfoundry.org/volumedriver/mountchecker
-# github.com/hanwen/go-fuse v1.0.0
-github.com/hanwen/go-fuse/fuse
-github.com/hanwen/go-fuse/fuse/nodefs
-github.com/hanwen/go-fuse/fuse/pathfs
-github.com/hanwen/go-fuse/splice
-github.com/hanwen/go-fuse/internal/utimens
+# github.com/hanwen/go-fuse/v2 v2.0.2
+github.com/hanwen/go-fuse/v2/fuse
+github.com/hanwen/go-fuse/v2/fuse/nodefs
+github.com/hanwen/go-fuse/v2/fuse/pathfs
+github.com/hanwen/go-fuse/v2/splice
+github.com/hanwen/go-fuse/v2/internal/utimens
+github.com/hanwen/go-fuse/v2/internal
 # github.com/hpcloud/tail v1.0.0
 github.com/hpcloud/tail
 github.com/hpcloud/tail/ratelimiter

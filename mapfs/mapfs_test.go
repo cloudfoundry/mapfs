@@ -8,8 +8,8 @@ import (
 	"code.cloudfoundry.org/goshims/syscallshim/syscall_fake"
 	"code.cloudfoundry.org/mapfs/mapfs"
 	"code.cloudfoundry.org/mapfs/mapfs_fakes"
-	"github.com/hanwen/go-fuse/fuse"
-	"github.com/hanwen/go-fuse/fuse/pathfs"
+	"github.com/hanwen/go-fuse/v2/fuse"
+	"github.com/hanwen/go-fuse/v2/fuse/pathfs"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"golang.org/x/sys/unix"
@@ -30,9 +30,7 @@ var _ = Describe("mapfs", func() {
 		fakeSyscall = &syscall_fake.FakeSyscall{}
 		uid = 5
 		gid = 10
-		context = &fuse.Context{
-			Owner: fuse.Owner{50, 100},
-		}
+		context = &fuse.Context{Caller: fuse.Caller{Owner: fuse.Owner{Uid: 50, Gid: 100}, Pid: 1}}
 	})
 
 	JustBeforeEach(func() {

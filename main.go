@@ -11,11 +11,11 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/hanwen/go-fuse/fuse"
-	"github.com/hanwen/go-fuse/fuse/nodefs"
-	"github.com/hanwen/go-fuse/fuse/pathfs"
-	"code.cloudfoundry.org/mapfs/mapfs"
 	"code.cloudfoundry.org/goshims/syscallshim"
+	"code.cloudfoundry.org/mapfs/mapfs"
+	"github.com/hanwen/go-fuse/v2/fuse/nodefs"
+	"github.com/hanwen/go-fuse/v2/fuse/pathfs"
+	"github.com/hanwen/go-fuse/v2/fuse"
 )
 
 func main() {
@@ -26,7 +26,6 @@ func main() {
 	gid := flag.Int64("gid", -1, "")
 	fsName := flag.String("fsname", "mapfs", "")
 	autoCache := flag.Bool("auto_cache", false, "")
-
 
 	flag.Parse()
 	if flag.NArg() < 2 || *uid <= 0 || *gid <= 0 {
