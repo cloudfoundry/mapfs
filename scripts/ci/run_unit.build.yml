@@ -16,4 +16,4 @@ run:
   - -c
   - |
     cd mapfs
-    ginkgo -r -mod vendor
+    GOFLAGS="-mod=vendor" ginkgo -r
