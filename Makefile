@@ -4,7 +4,7 @@ test:
     -w /go/src/mapfs \
     --privileged \
     cfpersi/mapfs-tests \
-    ginkgo  -r -v .
+    ginkgo  -r -v -flakeAttempts 3 .
 
 
 .PHONY: test
