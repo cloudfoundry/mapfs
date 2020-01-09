@@ -4,7 +4,7 @@ require (
 	code.cloudfoundry.org/goshims v0.0.0-20190529192408-bb24d2ef71ff
 	code.cloudfoundry.org/volumedriver v0.0.0-20190624205815-521b41315311
 	github.com/golang/protobuf v1.3.2 // indirect
-	github.com/hanwen/go-fuse/v2 v2.0.2
+	github.com/hanwen/go-fuse/v2 v2.0.3-0.20200103165319-0e3c45fc4899
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/onsi/ginkgo v1.10.1
 	github.com/onsi/gomega v1.7.0

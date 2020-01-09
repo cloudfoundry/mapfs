@@ -95,7 +95,6 @@ func doInit(server *Server, req *request) {
 		server.kernelSettings.Flags |= CAP_FLOCK_LOCKS | CAP_POSIX_LOCKS
 	}
 
-
 	dataCacheMode := input.Flags & CAP_AUTO_INVAL_DATA
 	if server.opts.ExplicitDataCacheControl {
 		// we don't want CAP_AUTO_INVAL_DATA even if we cannot go into fully explicit mode
@@ -272,7 +271,11 @@ func doGetXAttr(server *Server, req *request) {
 		req.status = OK
 		out.Size = n
 	} else if req.status.Ok() {
-		req.flatData = req.flatData[:n]
+		// ListXAttr called with an empty buffer returns the current size of
+		// the list but does not touch the buffer (see man 2 listxattr).
+		if len(req.flatData) > 0 {
+			req.flatData = req.flatData[:n]
+		}
 		out.Size = n
 	} else {
 		req.flatData = req.flatData[:0]
@@ -520,6 +523,8 @@ func getHandler(o uint32) *operationHandler {
 	return operationHandlers[o]
 }
 
+var maxInputSize uintptr
+
 func init() {
 	operationHandlers = make([]*operationHandler, _OPCODE_COUNT)
 	for i := range operationHandlers {
@@ -531,6 +536,7 @@ func init() {
 		operationHandlers[op].FileNameOut = true
 	}
 
+	maxInputSize = 0
 	for op, sz := range map[uint32]uintptr{
 		_OP_FORGET:          unsafe.Sizeof(ForgetIn{}),
 		_OP_BATCH_FORGET:    unsafe.Sizeof(_BatchForgetIn{}),
@@ -571,6 +577,9 @@ func init() {
 		_OP_COPY_FILE_RANGE: unsafe.Sizeof(CopyFileRangeIn{}),
 	} {
 		operationHandlers[op].InputSize = sz
+		if sz > maxInputSize {
+			maxInputSize = sz
+		}
 	}
 
 	for op, sz := range map[uint32]uintptr{
