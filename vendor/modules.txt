@@ -1,11 +1,16 @@
 # code.cloudfoundry.org/goshims v0.0.0-20190529192408-bb24d2ef71ff
+## explicit
 code.cloudfoundry.org/goshims/bufioshim
 code.cloudfoundry.org/goshims/osshim
 code.cloudfoundry.org/goshims/syscallshim
 code.cloudfoundry.org/goshims/syscallshim/syscall_fake
 # code.cloudfoundry.org/volumedriver v0.0.0-20190624205815-521b41315311
+## explicit
 code.cloudfoundry.org/volumedriver/mountchecker
+# github.com/golang/protobuf v1.3.2
+## explicit
 # github.com/hanwen/go-fuse/v2 v2.0.3-0.20200103165319-0e3c45fc4899
+## explicit
 github.com/hanwen/go-fuse/v2/fuse
 github.com/hanwen/go-fuse/v2/fuse/nodefs
 github.com/hanwen/go-fuse/v2/fuse/pathfs
@@ -18,7 +23,10 @@ github.com/hpcloud/tail/ratelimiter
 github.com/hpcloud/tail/util
 github.com/hpcloud/tail/watch
 github.com/hpcloud/tail/winfile
+# github.com/kr/pretty v0.1.0
+## explicit
 # github.com/onsi/ginkgo v1.10.1
+## explicit
 github.com/onsi/ginkgo
 github.com/onsi/ginkgo/config
 github.com/onsi/ginkgo/internal/codelocation
@@ -38,6 +46,7 @@ github.com/onsi/ginkgo/reporters/stenographer/support/go-colorable
 github.com/onsi/ginkgo/reporters/stenographer/support/go-isatty
 github.com/onsi/ginkgo/types
 # github.com/onsi/gomega v1.7.0
+## explicit
 github.com/onsi/gomega
 github.com/onsi/gomega/format
 github.com/onsi/gomega/gbytes
@@ -53,15 +62,19 @@ github.com/onsi/gomega/matchers/support/goraph/node
 github.com/onsi/gomega/matchers/support/goraph/util
 github.com/onsi/gomega/types
 # github.com/tedsuo/ifrit v0.0.0-20180802180643-bea94bb476cc
+## explicit
 github.com/tedsuo/ifrit
 github.com/tedsuo/ifrit/ginkgomon
 # golang.org/x/net v0.0.0-20190930134127-c5a3c61f89f3
+## explicit
 golang.org/x/net/html
 golang.org/x/net/html/atom
 golang.org/x/net/html/charset
 # golang.org/x/sys v0.0.0-20190927073244-c990c680b611
+## explicit
 golang.org/x/sys/unix
 # golang.org/x/text v0.3.2
+## explicit
 golang.org/x/text/encoding
 golang.org/x/text/encoding/charmap
 golang.org/x/text/encoding/htmlindex
@@ -79,9 +92,12 @@ golang.org/x/text/internal/utf8internal
 golang.org/x/text/language
 golang.org/x/text/runes
 golang.org/x/text/transform
+# gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15
+## explicit
 # gopkg.in/fsnotify.v1 v1.4.7
 gopkg.in/fsnotify.v1
 # gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7
 gopkg.in/tomb.v1
 # gopkg.in/yaml.v2 v2.2.3
+## explicit
 gopkg.in/yaml.v2

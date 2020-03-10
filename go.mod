@@ -1,5 +1,7 @@
 module code.cloudfoundry.org/mapfs
 
+go 1.14
+
 require (
 	code.cloudfoundry.org/goshims v0.0.0-20190529192408-bb24d2ef71ff
 	code.cloudfoundry.org/volumedriver v0.0.0-20190624205815-521b41315311
