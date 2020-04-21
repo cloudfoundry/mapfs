@@ -15,5 +15,6 @@ run:
   args:
   - -c
   - |
+    set -e
     cd mapfs
     GOFLAGS="-mod=vendor" ginkgo -r -flakeAttempts 3
