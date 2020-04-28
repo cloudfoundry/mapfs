@@ -5,7 +5,7 @@ require (
 	code.cloudfoundry.org/volumedriver v0.3.0
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/golang/protobuf v1.3.5 // indirect
-	github.com/hanwen/go-fuse/v2 v2.0.3-0.20200103165319-0e3c45fc4899
+	github.com/hanwen/go-fuse/v2 v2.0.3
 	github.com/kr/text v0.2.0 // indirect
 	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
 	github.com/onsi/ginkgo v1.12.0

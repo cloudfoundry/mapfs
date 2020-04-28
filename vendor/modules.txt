@@ -5,7 +5,7 @@ code.cloudfoundry.org/goshims/syscallshim
 code.cloudfoundry.org/goshims/syscallshim/syscall_fake
 # code.cloudfoundry.org/volumedriver v0.3.0
 code.cloudfoundry.org/volumedriver/mountchecker
-# github.com/hanwen/go-fuse/v2 v2.0.3-0.20200103165319-0e3c45fc4899
+# github.com/hanwen/go-fuse/v2 v2.0.3
 github.com/hanwen/go-fuse/v2/fuse
 github.com/hanwen/go-fuse/v2/fuse/nodefs
 github.com/hanwen/go-fuse/v2/fuse/pathfs
