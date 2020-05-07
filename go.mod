@@ -1,7 +1,7 @@
 module code.cloudfoundry.org/mapfs
 
 require (
-	code.cloudfoundry.org/goshims v0.1.0
+	code.cloudfoundry.org/goshims v0.4.0
 	code.cloudfoundry.org/volumedriver v0.5.0
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/golang/protobuf v1.3.5 // indirect
