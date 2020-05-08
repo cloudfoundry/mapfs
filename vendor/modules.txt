@@ -3,7 +3,7 @@ code.cloudfoundry.org/goshims/bufioshim
 code.cloudfoundry.org/goshims/osshim
 code.cloudfoundry.org/goshims/syscallshim
 code.cloudfoundry.org/goshims/syscallshim/syscall_fake
-# code.cloudfoundry.org/volumedriver v0.5.0
+# code.cloudfoundry.org/volumedriver v0.7.0
 code.cloudfoundry.org/volumedriver/mountchecker
 # github.com/hanwen/go-fuse/v2 v2.0.3
 github.com/hanwen/go-fuse/v2/fuse
