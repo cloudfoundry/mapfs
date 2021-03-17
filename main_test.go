@@ -1,13 +1,14 @@
 package main
 
 import (
-	"code.cloudfoundry.org/goshims/bufioshim"
-	"code.cloudfoundry.org/goshims/osshim"
-	"code.cloudfoundry.org/volumedriver/mountchecker"
 	"io"
 	"io/ioutil"
 	"os/exec"
 	"path/filepath"
+
+	"code.cloudfoundry.org/goshims/bufioshim"
+	"code.cloudfoundry.org/goshims/osshim"
+	"code.cloudfoundry.org/volumedriver/mountchecker"
 
 	"fmt"
 
@@ -120,7 +121,7 @@ var _ = Describe("mapfs Main", func() {
 			driverRunner := failRunner{
 				Name:       "mapfs",
 				Command:    exec.Command(binaryPath, args...),
-				StartCheck: "usage: mapfs -uid UID -gid GID",
+				StartCheck: "usage: " + binaryName + " -uid UID -gid GID",
 			}
 			process = ifrit.Invoke(driverRunner)
 
@@ -132,7 +133,7 @@ var _ = Describe("mapfs Main", func() {
 			driverRunner := failRunner{
 				Name:       "mapfs",
 				Command:    exec.Command(binaryPath, args...),
-				StartCheck: "usage: mapfs -uid UID -gid GID",
+				StartCheck: "usage: " + binaryName + " -uid UID -gid GID",
 			}
 			process = ifrit.Invoke(driverRunner)
 
@@ -144,7 +145,7 @@ var _ = Describe("mapfs Main", func() {
 			driverRunner := failRunner{
 				Name:       "mapfs",
 				Command:    exec.Command(binaryPath, args...),
-				StartCheck: "usage: mapfs -uid UID -gid GID",
+				StartCheck: "usage: " + binaryName + " -uid UID -gid GID",
 			}
 			process = ifrit.Invoke(driverRunner)
 		})

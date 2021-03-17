@@ -5,10 +5,12 @@ import (
 	. "github.com/onsi/gomega"
 	"github.com/onsi/gomega/gexec"
 
+	"path/filepath"
 	"testing"
 )
 
 var binaryPath string
+var binaryName string
 
 func TestLocalbroker(t *testing.T) {
 	RegisterFailHandler(Fail)
@@ -23,4 +25,5 @@ var _ = SynchronizedBeforeSuite(func() []byte {
 	return []byte(binaryPath)
 }, func(bytes []byte) {
 	binaryPath = string(bytes)
+	binaryName = filepath.Base(binaryPath)
 })
