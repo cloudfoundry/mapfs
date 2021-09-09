@@ -7,7 +7,7 @@ code.cloudfoundry.org/goshims/syscallshim/syscall_fake
 code.cloudfoundry.org/volumedriver/mountchecker
 # github.com/fsnotify/fsnotify v1.4.9
 github.com/fsnotify/fsnotify
-# github.com/hanwen/go-fuse/v2 v2.0.3
+# github.com/hanwen/go-fuse/v2 v2.1.0
 github.com/hanwen/go-fuse/v2/fuse
 github.com/hanwen/go-fuse/v2/fuse/nodefs
 github.com/hanwen/go-fuse/v2/fuse/pathfs
