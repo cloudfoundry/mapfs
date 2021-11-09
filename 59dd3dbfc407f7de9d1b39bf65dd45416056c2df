@@ -1,0 +1,7 @@
+{
+  "pr": "34",
+  "repository": "cloudfoundry/mapfs",
+  "base_branch": "master",
+  "head_branch": "dependabot/go_modules/github.com/hanwen/go-fuse/v2-2.1.0",
+  "branch_tip": "59dd3dbfc407f7de9d1b39bf65dd45416056c2df"
+}
