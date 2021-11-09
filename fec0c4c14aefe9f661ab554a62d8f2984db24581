@@ -1,0 +1,7 @@
+{
+  "pr": "40",
+  "repository": "cloudfoundry/mapfs",
+  "base_branch": "master",
+  "head_branch": "dependabot/go_modules/github.com/onsi/ginkgo-1.16.5",
+  "branch_tip": "fec0c4c14aefe9f661ab554a62d8f2984db24581"
+}
