@@ -1,4 +1,4 @@
-# code.cloudfoundry.org/goshims v0.7.0
+# code.cloudfoundry.org/goshims v0.10.0
 code.cloudfoundry.org/goshims/bufioshim
 code.cloudfoundry.org/goshims/osshim
 code.cloudfoundry.org/goshims/syscallshim
