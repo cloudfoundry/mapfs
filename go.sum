@@ -6,8 +6,8 @@ code.cloudfoundry.org/goshims v0.10.0 h1:Ha03p/TO6mHR4rpKOZlWAE7u37dVdTyza73oIFX
 code.cloudfoundry.org/goshims v0.10.0/go.mod h1:/pxg2kLczEDsKZLdssFL/wuAddc/nemZwZ9gfiL0KWk=
 code.cloudfoundry.org/lager v1.1.1-0.20191008172124-a9afc05ee5be/go.mod h1:O2sS7gKP3HM2iemG+EnwvyNQK7pTSC6Foi4QiMp9sSk=
 code.cloudfoundry.org/tlsconfig v0.0.0-20200131000646-bbe0f8da39b3/go.mod h1:eTbFJpyXRGuFVyg5+oaj9B2eIbIc+0/kZjH8ftbtdew=
-code.cloudfoundry.org/volumedriver v0.34.0 h1:xXz4deZbyqfxc7+LG5Zku+2cBsnX5kGPwIU0ER8gW8c=
-code.cloudfoundry.org/volumedriver v0.34.0/go.mod h1:gcovU/7rfZnkXPqxV4LvLV/9WoHISQ6Qxy/WHWfz4OU=
+code.cloudfoundry.org/volumedriver v0.35.0 h1:/iohtJnEvZ4OVnReLE9shuL3SnYADelbYW8qfNGOJS4=
+code.cloudfoundry.org/volumedriver v0.35.0/go.mod h1:XzwisGO/Q2MoOybQV2UCEc3amlzek8DpychP1Kd9pUU=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/bmizerany/pat v0.0.0-20170815010413-6226ea591a40/go.mod h1:8rLXio+WjiTceGBHIoTvn60HIbs7Hm7bcHjyrSqYB9c=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
