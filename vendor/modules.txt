@@ -3,7 +3,7 @@ code.cloudfoundry.org/goshims/bufioshim
 code.cloudfoundry.org/goshims/osshim
 code.cloudfoundry.org/goshims/syscallshim
 code.cloudfoundry.org/goshims/syscallshim/syscall_fake
-# code.cloudfoundry.org/volumedriver v0.38.0
+# code.cloudfoundry.org/volumedriver v0.39.0
 code.cloudfoundry.org/volumedriver/mountchecker
 # github.com/fsnotify/fsnotify v1.4.9
 github.com/fsnotify/fsnotify
