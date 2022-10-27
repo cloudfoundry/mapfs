@@ -5,9 +5,9 @@ require (
 	code.cloudfoundry.org/volumedriver v0.39.0
 	github.com/hanwen/go-fuse/v2 v2.1.0
 	github.com/onsi/ginkgo v1.16.5
-	github.com/onsi/gomega v1.22.1
+	github.com/onsi/gomega v1.23.0
 	github.com/tedsuo/ifrit v0.0.0-20191009134036-9a97d0632f00
-	golang.org/x/sys v0.0.0-20220722155257-8c9f86f7a55f
+	golang.org/x/sys v0.1.0
 )
 
 go 1.13
