@@ -5,7 +5,7 @@ require (
 	code.cloudfoundry.org/volumedriver v0.46.0
 	github.com/hanwen/go-fuse/v2 v2.2.0
 	github.com/onsi/ginkgo v1.16.5
-	github.com/onsi/gomega v1.27.1
+	github.com/onsi/gomega v1.27.2
 	github.com/tedsuo/ifrit v0.0.0-20191009134036-9a97d0632f00
 	golang.org/x/sys v0.5.0
 )
