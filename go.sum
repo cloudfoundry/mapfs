@@ -1,8 +1,8 @@
 cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 code.cloudfoundry.org/goshims v0.14.0 h1:HWoYJcjjPf468CNIVb3dcwuaZMOFVadmAYuxz4l3UgY=
 code.cloudfoundry.org/goshims v0.14.0/go.mod h1:+0EO9vwszI7m3sguaFGmEd4OAYw/3rlgcQE5ocM4xAY=
-code.cloudfoundry.org/volumedriver v0.51.0 h1:7D0t0Bh0kMp/07ifgY3+Gtb3D2P4ARRl6qqb4ySzyCY=
-code.cloudfoundry.org/volumedriver v0.51.0/go.mod h1:r9lzt8botIlLLVOAUN2KrJJN9njGrqdAkaaUFhve4Ro=
+code.cloudfoundry.org/volumedriver v0.52.0 h1:khDjuwBiGBw6vcuDmAks1xYTpLQWkqYzyicsf18XFmo=
+code.cloudfoundry.org/volumedriver v0.52.0/go.mod h1:r9lzt8botIlLLVOAUN2KrJJN9njGrqdAkaaUFhve4Ro=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
