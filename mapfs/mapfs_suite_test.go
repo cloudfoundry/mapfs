@@ -1,13 +1,13 @@
 package mapfs_test
 
 import (
-. "github.com/onsi/ginkgo"
-. "github.com/onsi/gomega"
+	"testing"
 
-"testing"
+	. "github.com/onsi/ginkgo/v2"
+	. "github.com/onsi/gomega"
 )
 
 func TestBroker(t *testing.T) {
-RegisterFailHandler(Fail)
-RunSpecs(t, "MapFS Suite")
+	RegisterFailHandler(Fail)
+	RunSpecs(t, "MapFS Suite")
 }

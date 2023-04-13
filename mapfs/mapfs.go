@@ -5,19 +5,19 @@ import (
 	"syscall"
 	"time"
 
-	"golang.org/x/sys/unix"
-
 	"code.cloudfoundry.org/goshims/syscallshim"
 	"github.com/hanwen/go-fuse/v2/fuse"
 	"github.com/hanwen/go-fuse/v2/fuse/nodefs"
 	"github.com/hanwen/go-fuse/v2/fuse/pathfs"
+	"golang.org/x/sys/unix"
 )
 
 const (
 	CURRENT_ID = -1
 )
 
-//go:generate counterfeiter -o ../mapfs_fakes/fake_file_system.go  ../vendor/github.com/hanwen/go-fuse/v2/fuse/pathfs FileSystem
+//go:generate go run github.com/maxbrunsfeld/counterfeiter/v6 -generate
+//counterfeiter:generate -o ../mapfs_fakes/fake_file_system.go  github.com/hanwen/go-fuse/v2/fuse/pathfs.FileSystem
 
 type mapFileSystem struct {
 	pathfs.FileSystem
