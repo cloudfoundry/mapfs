@@ -13,9 +13,9 @@ import (
 
 	"code.cloudfoundry.org/goshims/syscallshim"
 	"code.cloudfoundry.org/mapfs/mapfs"
+	"github.com/hanwen/go-fuse/v2/fuse"
 	"github.com/hanwen/go-fuse/v2/fuse/nodefs"
 	"github.com/hanwen/go-fuse/v2/fuse/pathfs"
-	"github.com/hanwen/go-fuse/v2/fuse"
 )
 
 func main() {

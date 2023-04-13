@@ -345,15 +345,16 @@ func (fake *FakeFileSystem) Access(arg1 string, arg2 uint32, arg3 *fuse.Context)
 		arg2 uint32
 		arg3 *fuse.Context
 	}{arg1, arg2, arg3})
+	stub := fake.AccessStub
+	fakeReturns := fake.accessReturns
 	fake.recordInvocation("Access", []interface{}{arg1, arg2, arg3})
 	fake.accessMutex.Unlock()
-	if fake.AccessStub != nil {
-		return fake.AccessStub(arg1, arg2, arg3)
+	if stub != nil {
+		return stub(arg1, arg2, arg3)
 	}
 	if specificReturn {
 		return ret.result1
 	}
-	fakeReturns := fake.accessReturns
 	return fakeReturns.result1
 }
 
@@ -407,15 +408,16 @@ func (fake *FakeFileSystem) Chmod(arg1 string, arg2 uint32, arg3 *fuse.Context) 
 		arg2 uint32
 		arg3 *fuse.Context
 	}{arg1, arg2, arg3})
+	stub := fake.ChmodStub
+	fakeReturns := fake.chmodReturns
 	fake.recordInvocation("Chmod", []interface{}{arg1, arg2, arg3})
 	fake.chmodMutex.Unlock()
-	if fake.ChmodStub != nil {
-		return fake.ChmodStub(arg1, arg2, arg3)
+	if stub != nil {
+		return stub(arg1, arg2, arg3)
 	}
 	if specificReturn {
 		return ret.result1
 	}
-	fakeReturns := fake.chmodReturns
 	return fakeReturns.result1
 }
 
@@ -470,15 +472,16 @@ func (fake *FakeFileSystem) Chown(arg1 string, arg2 uint32, arg3 uint32, arg4 *f
 		arg3 uint32
 		arg4 *fuse.Context
 	}{arg1, arg2, arg3, arg4})
+	stub := fake.ChownStub
+	fakeReturns := fake.chownReturns
 	fake.recordInvocation("Chown", []interface{}{arg1, arg2, arg3, arg4})
 	fake.chownMutex.Unlock()
-	if fake.ChownStub != nil {
-		return fake.ChownStub(arg1, arg2, arg3, arg4)
+	if stub != nil {
+		return stub(arg1, arg2, arg3, arg4)
 	}
 	if specificReturn {
 		return ret.result1
 	}
-	fakeReturns := fake.chownReturns
 	return fakeReturns.result1
 }
 
@@ -533,15 +536,16 @@ func (fake *FakeFileSystem) Create(arg1 string, arg2 uint32, arg3 uint32, arg4 *
 		arg3 uint32
 		arg4 *fuse.Context
 	}{arg1, arg2, arg3, arg4})
+	stub := fake.CreateStub
+	fakeReturns := fake.createReturns
 	fake.recordInvocation("Create", []interface{}{arg1, arg2, arg3, arg4})
 	fake.createMutex.Unlock()
-	if fake.CreateStub != nil {
-		return fake.CreateStub(arg1, arg2, arg3, arg4)
+	if stub != nil {
+		return stub(arg1, arg2, arg3, arg4)
 	}
 	if specificReturn {
 		return ret.result1, ret.result2
 	}
-	fakeReturns := fake.createReturns
 	return fakeReturns.result1, fakeReturns.result2
 }
 
@@ -597,15 +601,16 @@ func (fake *FakeFileSystem) GetAttr(arg1 string, arg2 *fuse.Context) (*fuse.Attr
 		arg1 string
 		arg2 *fuse.Context
 	}{arg1, arg2})
+	stub := fake.GetAttrStub
+	fakeReturns := fake.getAttrReturns
 	fake.recordInvocation("GetAttr", []interface{}{arg1, arg2})
 	fake.getAttrMutex.Unlock()
-	if fake.GetAttrStub != nil {
-		return fake.GetAttrStub(arg1, arg2)
+	if stub != nil {
+		return stub(arg1, arg2)
 	}
 	if specificReturn {
 		return ret.result1, ret.result2
 	}
-	fakeReturns := fake.getAttrReturns
 	return fakeReturns.result1, fakeReturns.result2
 }
 
@@ -662,15 +667,16 @@ func (fake *FakeFileSystem) GetXAttr(arg1 string, arg2 string, arg3 *fuse.Contex
 		arg2 string
 		arg3 *fuse.Context
 	}{arg1, arg2, arg3})
+	stub := fake.GetXAttrStub
+	fakeReturns := fake.getXAttrReturns
 	fake.recordInvocation("GetXAttr", []interface{}{arg1, arg2, arg3})
 	fake.getXAttrMutex.Unlock()
-	if fake.GetXAttrStub != nil {
-		return fake.GetXAttrStub(arg1, arg2, arg3)
+	if stub != nil {
+		return stub(arg1, arg2, arg3)
 	}
 	if specificReturn {
 		return ret.result1, ret.result2
 	}
-	fakeReturns := fake.getXAttrReturns
 	return fakeReturns.result1, fakeReturns.result2
 }
 
@@ -727,15 +733,16 @@ func (fake *FakeFileSystem) Link(arg1 string, arg2 string, arg3 *fuse.Context) f
 		arg2 string
 		arg3 *fuse.Context
 	}{arg1, arg2, arg3})
+	stub := fake.LinkStub
+	fakeReturns := fake.linkReturns
 	fake.recordInvocation("Link", []interface{}{arg1, arg2, arg3})
 	fake.linkMutex.Unlock()
-	if fake.LinkStub != nil {
-		return fake.LinkStub(arg1, arg2, arg3)
+	if stub != nil {
+		return stub(arg1, arg2, arg3)
 	}
 	if specificReturn {
 		return ret.result1
 	}
-	fakeReturns := fake.linkReturns
 	return fakeReturns.result1
 }
 
@@ -788,15 +795,16 @@ func (fake *FakeFileSystem) ListXAttr(arg1 string, arg2 *fuse.Context) ([]string
 		arg1 string
 		arg2 *fuse.Context
 	}{arg1, arg2})
+	stub := fake.ListXAttrStub
+	fakeReturns := fake.listXAttrReturns
 	fake.recordInvocation("ListXAttr", []interface{}{arg1, arg2})
 	fake.listXAttrMutex.Unlock()
-	if fake.ListXAttrStub != nil {
-		return fake.ListXAttrStub(arg1, arg2)
+	if stub != nil {
+		return stub(arg1, arg2)
 	}
 	if specificReturn {
 		return ret.result1, ret.result2
 	}
-	fakeReturns := fake.listXAttrReturns
 	return fakeReturns.result1, fakeReturns.result2
 }
 
@@ -853,15 +861,16 @@ func (fake *FakeFileSystem) Mkdir(arg1 string, arg2 uint32, arg3 *fuse.Context) 
 		arg2 uint32
 		arg3 *fuse.Context
 	}{arg1, arg2, arg3})
+	stub := fake.MkdirStub
+	fakeReturns := fake.mkdirReturns
 	fake.recordInvocation("Mkdir", []interface{}{arg1, arg2, arg3})
 	fake.mkdirMutex.Unlock()
-	if fake.MkdirStub != nil {
-		return fake.MkdirStub(arg1, arg2, arg3)
+	if stub != nil {
+		return stub(arg1, arg2, arg3)
 	}
 	if specificReturn {
 		return ret.result1
 	}
-	fakeReturns := fake.mkdirReturns
 	return fakeReturns.result1
 }
 
@@ -916,15 +925,16 @@ func (fake *FakeFileSystem) Mknod(arg1 string, arg2 uint32, arg3 uint32, arg4 *f
 		arg3 uint32
 		arg4 *fuse.Context
 	}{arg1, arg2, arg3, arg4})
+	stub := fake.MknodStub
+	fakeReturns := fake.mknodReturns
 	fake.recordInvocation("Mknod", []interface{}{arg1, arg2, arg3, arg4})
 	fake.mknodMutex.Unlock()
-	if fake.MknodStub != nil {
-		return fake.MknodStub(arg1, arg2, arg3, arg4)
+	if stub != nil {
+		return stub(arg1, arg2, arg3, arg4)
 	}
 	if specificReturn {
 		return ret.result1
 	}
-	fakeReturns := fake.mknodReturns
 	return fakeReturns.result1
 }
 
@@ -975,9 +985,10 @@ func (fake *FakeFileSystem) OnMount(arg1 *pathfs.PathNodeFs) {
 	fake.onMountArgsForCall = append(fake.onMountArgsForCall, struct {
 		arg1 *pathfs.PathNodeFs
 	}{arg1})
+	stub := fake.OnMountStub
 	fake.recordInvocation("OnMount", []interface{}{arg1})
 	fake.onMountMutex.Unlock()
-	if fake.OnMountStub != nil {
+	if stub != nil {
 		fake.OnMountStub(arg1)
 	}
 }
@@ -1005,9 +1016,10 @@ func (fake *FakeFileSystem) OnUnmount() {
 	fake.onUnmountMutex.Lock()
 	fake.onUnmountArgsForCall = append(fake.onUnmountArgsForCall, struct {
 	}{})
+	stub := fake.OnUnmountStub
 	fake.recordInvocation("OnUnmount", []interface{}{})
 	fake.onUnmountMutex.Unlock()
-	if fake.OnUnmountStub != nil {
+	if stub != nil {
 		fake.OnUnmountStub()
 	}
 }
@@ -1032,15 +1044,16 @@ func (fake *FakeFileSystem) Open(arg1 string, arg2 uint32, arg3 *fuse.Context) (
 		arg2 uint32
 		arg3 *fuse.Context
 	}{arg1, arg2, arg3})
+	stub := fake.OpenStub
+	fakeReturns := fake.openReturns
 	fake.recordInvocation("Open", []interface{}{arg1, arg2, arg3})
 	fake.openMutex.Unlock()
-	if fake.OpenStub != nil {
-		return fake.OpenStub(arg1, arg2, arg3)
+	if stub != nil {
+		return stub(arg1, arg2, arg3)
 	}
 	if specificReturn {
 		return ret.result1, ret.result2
 	}
-	fakeReturns := fake.openReturns
 	return fakeReturns.result1, fakeReturns.result2
 }
 
@@ -1096,15 +1109,16 @@ func (fake *FakeFileSystem) OpenDir(arg1 string, arg2 *fuse.Context) ([]fuse.Dir
 		arg1 string
 		arg2 *fuse.Context
 	}{arg1, arg2})
+	stub := fake.OpenDirStub
+	fakeReturns := fake.openDirReturns
 	fake.recordInvocation("OpenDir", []interface{}{arg1, arg2})
 	fake.openDirMutex.Unlock()
-	if fake.OpenDirStub != nil {
-		return fake.OpenDirStub(arg1, arg2)
+	if stub != nil {
+		return stub(arg1, arg2)
 	}
 	if specificReturn {
 		return ret.result1, ret.result2
 	}
-	fakeReturns := fake.openDirReturns
 	return fakeReturns.result1, fakeReturns.result2
 }
 
@@ -1160,15 +1174,16 @@ func (fake *FakeFileSystem) Readlink(arg1 string, arg2 *fuse.Context) (string, f
 		arg1 string
 		arg2 *fuse.Context
 	}{arg1, arg2})
+	stub := fake.ReadlinkStub
+	fakeReturns := fake.readlinkReturns
 	fake.recordInvocation("Readlink", []interface{}{arg1, arg2})
 	fake.readlinkMutex.Unlock()
-	if fake.ReadlinkStub != nil {
-		return fake.ReadlinkStub(arg1, arg2)
+	if stub != nil {
+		return stub(arg1, arg2)
 	}
 	if specificReturn {
 		return ret.result1, ret.result2
 	}
-	fakeReturns := fake.readlinkReturns
 	return fakeReturns.result1, fakeReturns.result2
 }
 
@@ -1225,15 +1240,16 @@ func (fake *FakeFileSystem) RemoveXAttr(arg1 string, arg2 string, arg3 *fuse.Con
 		arg2 string
 		arg3 *fuse.Context
 	}{arg1, arg2, arg3})
+	stub := fake.RemoveXAttrStub
+	fakeReturns := fake.removeXAttrReturns
 	fake.recordInvocation("RemoveXAttr", []interface{}{arg1, arg2, arg3})
 	fake.removeXAttrMutex.Unlock()
-	if fake.RemoveXAttrStub != nil {
-		return fake.RemoveXAttrStub(arg1, arg2, arg3)
+	if stub != nil {
+		return stub(arg1, arg2, arg3)
 	}
 	if specificReturn {
 		return ret.result1
 	}
-	fakeReturns := fake.removeXAttrReturns
 	return fakeReturns.result1
 }
 
@@ -1287,15 +1303,16 @@ func (fake *FakeFileSystem) Rename(arg1 string, arg2 string, arg3 *fuse.Context)
 		arg2 string
 		arg3 *fuse.Context
 	}{arg1, arg2, arg3})
+	stub := fake.RenameStub
+	fakeReturns := fake.renameReturns
 	fake.recordInvocation("Rename", []interface{}{arg1, arg2, arg3})
 	fake.renameMutex.Unlock()
-	if fake.RenameStub != nil {
-		return fake.RenameStub(arg1, arg2, arg3)
+	if stub != nil {
+		return stub(arg1, arg2, arg3)
 	}
 	if specificReturn {
 		return ret.result1
 	}
-	fakeReturns := fake.renameReturns
 	return fakeReturns.result1
 }
 
@@ -1348,15 +1365,16 @@ func (fake *FakeFileSystem) Rmdir(arg1 string, arg2 *fuse.Context) fuse.Status {
 		arg1 string
 		arg2 *fuse.Context
 	}{arg1, arg2})
+	stub := fake.RmdirStub
+	fakeReturns := fake.rmdirReturns
 	fake.recordInvocation("Rmdir", []interface{}{arg1, arg2})
 	fake.rmdirMutex.Unlock()
-	if fake.RmdirStub != nil {
-		return fake.RmdirStub(arg1, arg2)
+	if stub != nil {
+		return stub(arg1, arg2)
 	}
 	if specificReturn {
 		return ret.result1
 	}
-	fakeReturns := fake.rmdirReturns
 	return fakeReturns.result1
 }
 
@@ -1407,9 +1425,10 @@ func (fake *FakeFileSystem) SetDebug(arg1 bool) {
 	fake.setDebugArgsForCall = append(fake.setDebugArgsForCall, struct {
 		arg1 bool
 	}{arg1})
+	stub := fake.SetDebugStub
 	fake.recordInvocation("SetDebug", []interface{}{arg1})
 	fake.setDebugMutex.Unlock()
-	if fake.SetDebugStub != nil {
+	if stub != nil {
 		fake.SetDebugStub(arg1)
 	}
 }
@@ -1448,15 +1467,16 @@ func (fake *FakeFileSystem) SetXAttr(arg1 string, arg2 string, arg3 []byte, arg4
 		arg4 int
 		arg5 *fuse.Context
 	}{arg1, arg2, arg3Copy, arg4, arg5})
+	stub := fake.SetXAttrStub
+	fakeReturns := fake.setXAttrReturns
 	fake.recordInvocation("SetXAttr", []interface{}{arg1, arg2, arg3Copy, arg4, arg5})
 	fake.setXAttrMutex.Unlock()
-	if fake.SetXAttrStub != nil {
-		return fake.SetXAttrStub(arg1, arg2, arg3, arg4, arg5)
+	if stub != nil {
+		return stub(arg1, arg2, arg3, arg4, arg5)
 	}
 	if specificReturn {
 		return ret.result1
 	}
-	fakeReturns := fake.setXAttrReturns
 	return fakeReturns.result1
 }
 
@@ -1508,15 +1528,16 @@ func (fake *FakeFileSystem) StatFs(arg1 string) *fuse.StatfsOut {
 	fake.statFsArgsForCall = append(fake.statFsArgsForCall, struct {
 		arg1 string
 	}{arg1})
+	stub := fake.StatFsStub
+	fakeReturns := fake.statFsReturns
 	fake.recordInvocation("StatFs", []interface{}{arg1})
 	fake.statFsMutex.Unlock()
-	if fake.StatFsStub != nil {
-		return fake.StatFsStub(arg1)
+	if stub != nil {
+		return stub(arg1)
 	}
 	if specificReturn {
 		return ret.result1
 	}
-	fakeReturns := fake.statFsReturns
 	return fakeReturns.result1
 }
 
@@ -1567,15 +1588,16 @@ func (fake *FakeFileSystem) String() string {
 	ret, specificReturn := fake.stringReturnsOnCall[len(fake.stringArgsForCall)]
 	fake.stringArgsForCall = append(fake.stringArgsForCall, struct {
 	}{})
+	stub := fake.StringStub
+	fakeReturns := fake.stringReturns
 	fake.recordInvocation("String", []interface{}{})
 	fake.stringMutex.Unlock()
-	if fake.StringStub != nil {
-		return fake.StringStub()
+	if stub != nil {
+		return stub()
 	}
 	if specificReturn {
 		return ret.result1
 	}
-	fakeReturns := fake.stringReturns
 	return fakeReturns.result1
 }
 
@@ -1622,15 +1644,16 @@ func (fake *FakeFileSystem) Symlink(arg1 string, arg2 string, arg3 *fuse.Context
 		arg2 string
 		arg3 *fuse.Context
 	}{arg1, arg2, arg3})
+	stub := fake.SymlinkStub
+	fakeReturns := fake.symlinkReturns
 	fake.recordInvocation("Symlink", []interface{}{arg1, arg2, arg3})
 	fake.symlinkMutex.Unlock()
-	if fake.SymlinkStub != nil {
-		return fake.SymlinkStub(arg1, arg2, arg3)
+	if stub != nil {
+		return stub(arg1, arg2, arg3)
 	}
 	if specificReturn {
 		return ret.result1
 	}
-	fakeReturns := fake.symlinkReturns
 	return fakeReturns.result1
 }
 
@@ -1684,15 +1707,16 @@ func (fake *FakeFileSystem) Truncate(arg1 string, arg2 uint64, arg3 *fuse.Contex
 		arg2 uint64
 		arg3 *fuse.Context
 	}{arg1, arg2, arg3})
+	stub := fake.TruncateStub
+	fakeReturns := fake.truncateReturns
 	fake.recordInvocation("Truncate", []interface{}{arg1, arg2, arg3})
 	fake.truncateMutex.Unlock()
-	if fake.TruncateStub != nil {
-		return fake.TruncateStub(arg1, arg2, arg3)
+	if stub != nil {
+		return stub(arg1, arg2, arg3)
 	}
 	if specificReturn {
 		return ret.result1
 	}
-	fakeReturns := fake.truncateReturns
 	return fakeReturns.result1
 }
 
@@ -1745,15 +1769,16 @@ func (fake *FakeFileSystem) Unlink(arg1 string, arg2 *fuse.Context) fuse.Status 
 		arg1 string
 		arg2 *fuse.Context
 	}{arg1, arg2})
+	stub := fake.UnlinkStub
+	fakeReturns := fake.unlinkReturns
 	fake.recordInvocation("Unlink", []interface{}{arg1, arg2})
 	fake.unlinkMutex.Unlock()
-	if fake.UnlinkStub != nil {
-		return fake.UnlinkStub(arg1, arg2)
+	if stub != nil {
+		return stub(arg1, arg2)
 	}
 	if specificReturn {
 		return ret.result1
 	}
-	fakeReturns := fake.unlinkReturns
 	return fakeReturns.result1
 }
 
@@ -1808,15 +1833,16 @@ func (fake *FakeFileSystem) Utimens(arg1 string, arg2 *time.Time, arg3 *time.Tim
 		arg3 *time.Time
 		arg4 *fuse.Context
 	}{arg1, arg2, arg3, arg4})
+	stub := fake.UtimensStub
+	fakeReturns := fake.utimensReturns
 	fake.recordInvocation("Utimens", []interface{}{arg1, arg2, arg3, arg4})
 	fake.utimensMutex.Unlock()
-	if fake.UtimensStub != nil {
-		return fake.UtimensStub(arg1, arg2, arg3, arg4)
+	if stub != nil {
+		return stub(arg1, arg2, arg3, arg4)
 	}
 	if specificReturn {
 		return ret.result1
 	}
-	fakeReturns := fake.utimensReturns
 	return fakeReturns.result1
 }
 

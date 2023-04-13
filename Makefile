@@ -4,7 +4,7 @@ test:
     -w /go/src/mapfs \
     --privileged \
     cfpersi/mapfs-tests \
-    ginkgo  -r -v -flakeAttempts 3 .
+    go run github.com/onsi/ginkgo/v2/ginkgo -r -v --flake-attempts 3 .
 
 # Note: the fstest suite is available at https://github.com/zfsonlinux/fstest
 fly-fstest:

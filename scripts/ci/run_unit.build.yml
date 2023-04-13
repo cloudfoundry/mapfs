@@ -17,4 +17,4 @@ run:
   - |
     set -e
     cd mapfs
-    GOFLAGS="-mod=vendor" ginkgo -r -flakeAttempts 3
+    go run github.com/onsi/ginkgo/v2/ginkgo -r --flake-attempts 3

@@ -2,15 +2,15 @@ package perf_test
 
 import (
 	"fmt"
-	. "github.com/onsi/ginkgo"
+	"io/ioutil"
+	"os/exec"
+	"testing"
+	"time"
+
+	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"github.com/onsi/gomega/gbytes"
 	"github.com/onsi/gomega/gexec"
-	"io/ioutil"
-	"os/exec"
-	"time"
-
-	"testing"
 )
 
 func TestPerf(t *testing.T) {
