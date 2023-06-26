@@ -9,6 +9,7 @@ require (
 	github.com/onsi/gomega v1.27.8
 	github.com/tedsuo/ifrit v0.0.0-20230330192023-5cba443a66c4
 	golang.org/x/sys v0.9.0
+	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
@@ -23,7 +24,6 @@ require (
 	golang.org/x/text v0.10.0 // indirect
 	golang.org/x/tools v0.9.3 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
 go 1.20
