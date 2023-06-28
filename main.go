@@ -12,6 +12,7 @@ import (
 	"path"
 	"path/filepath"
 	"runtime"
+	"runtime/debug"
 	"runtime/pprof"
 	"syscall"
 	"time"
@@ -26,7 +27,7 @@ import (
 func main() {
 	log.SetFlags(log.Lmicroseconds)
 
-	debug := flag.Bool("debug", false, "")
+	debugLogging := flag.Bool("debug", false, "")
 	uid := flag.Int64("uid", -1, "")
 	gid := flag.Int64("gid", -1, "")
 	fsName := flag.String("fsname", "mapfs", "")
@@ -36,23 +37,31 @@ func main() {
 	flag.Parse()
 	if flag.NArg() < 2 || *uid <= 0 || *gid <= 0 {
 		fmt.Printf("usage: %s -uid UID -gid GID [-fsname FSNAME] [-auto_cache] [-debug] MOUNTPOINT ORIGINAL\n", path.Base(os.Args[0]))
-		fmt.Printf("UID and GID must be > 0")
+		fmt.Println("UID and GID must be > 0")
 		os.Exit(2)
+	}
+	if *autoCache {
+		fmt.Println("warning -- auto_cache flag ignored as it is unsupported in fusermount")
 	}
 	cfg, err := parseConfigFile(*configFile)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(3)
 	}
-	if !*debug {
-		debug = &cfg.Debug
+	if cfg.Debug {
+		debugLogging = &cfg.Debug
+		cleanup := redirectLoggerToFile()
+		defer cleanup()
 	}
 	if cfg.CPUProfile != "" {
-		cpuprofile(cfg.CPUProfile)
-		defer pprof.StopCPUProfile()
+		cleanup := startCPUProfile(cfg.CPUProfile)
+		defer cleanup()
 	}
 	if cfg.MemProfile != "" {
 		memprofile(cfg.MemProfile)
+	}
+	if cfg.SoftMemLimit > 0 {
+		debug.SetMemoryLimit(cfg.SoftMemLimit)
 	}
 
 	orig := flag.Arg(1)
@@ -65,11 +74,6 @@ func main() {
 		EntryTimeout:    time.Second,
 	}
 
-	fuseOpts := []string{}
-	if *autoCache {
-		fmt.Println("warning -- auto_cache flag ignored as it is unsupported in fusermount")
-	}
-
 	pathFs := pathfs.NewPathNodeFs(finalFs, &pathfs.PathNodeFsOptions{})
 	conn := nodefs.NewFileSystemConnector(pathFs.Root(), opts)
 	mountPoint := flag.Arg(0)
@@ -78,11 +82,8 @@ func main() {
 		AllowOther:     true,
 		Name:           *fsName,
 		FsName:         origAbs,
-		Debug:          *debug,
+		Debug:          *debugLogging,
 		SingleThreaded: cfg.SingleThreaded,
-	}
-	if len(fuseOpts) > 0 {
-		mOpts.Options = fuseOpts
 	}
 	state, err := fuse.NewServer(conn.RawFS(), mountPoint, mOpts)
 	if err != nil {
@@ -100,6 +101,7 @@ type config struct {
 	SingleThreaded bool   `yaml:"single_threaded"`
 	CPUProfile     string `yaml:"cpu_profile"`
 	MemProfile     string `yaml:"mem_profile"`
+	SoftMemLimit   int64  `yaml:"soft_mem_limit"`
 }
 
 // parseConfigFile reads and parses the configuration file
@@ -135,7 +137,7 @@ func memprofile(path string) {
 	signal.Notify(sigs, syscall.SIGUSR1)
 	go func() {
 		for range sigs {
-			fh, err := os.Create(filepath.Clean(path) + time.Now().Format("2006-01-02T15-04-05"))
+			fh, err := os.Create(filepath.Clean(path) + time.Now().Format(".20060102150405"))
 			if err != nil {
 				log.Printf("could not create memory profile file: %s", err)
 				continue
@@ -152,13 +154,37 @@ func memprofile(path string) {
 	}()
 }
 
-// cpuprofile will start a CPU profile
-func cpuprofile(path string) {
+// startCPUProfile will start a CPU profile, returning a cleanup callback
+func startCPUProfile(path string) func() {
 	fh, err := os.Create(filepath.Clean(path))
 	if err != nil {
 		log.Fatal(err)
 	}
 	if err := pprof.StartCPUProfile(fh); err != nil {
 		log.Fatal(err)
+	}
+
+	return func() {
+		pprof.StopCPUProfile()
+		if err := fh.Close(); err != nil {
+			log.Fatal(err)
+		}
+	}
+}
+
+// redirectLoggerToFile redirects the standard logger (used by go-fuse) to a log
+// file, returning a cleanup callback
+func redirectLoggerToFile() func() {
+	path := fmt.Sprintf("/var/vcap/sys/log/mapfs/mapfs.%d.log", os.Getpid())
+	fh, err := os.Create(filepath.Clean(path))
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.SetOutput(fh)
+
+	return func() {
+		if err := fh.Close(); err != nil {
+			log.Fatal(err)
+		}
 	}
 }
