@@ -1,4 +1,4 @@
-# code.cloudfoundry.org/goshims v0.22.0
+# code.cloudfoundry.org/goshims v0.23.0
 ## explicit; go 1.20
 code.cloudfoundry.org/goshims/bufioshim
 code.cloudfoundry.org/goshims/osshim
