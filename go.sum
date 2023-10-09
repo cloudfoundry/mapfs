@@ -1,7 +1,7 @@
 code.cloudfoundry.org/goshims v0.24.0 h1:smrYXrYA/AwLI3XC4cpMtRtc9muxdCLBXtEDsde/0jo=
 code.cloudfoundry.org/goshims v0.24.0/go.mod h1:L2VBklGSlw0Vl/CIBJWunqiNEmhE1/CG3SqlBoqQzzk=
-code.cloudfoundry.org/volumedriver v0.73.0 h1:R6YWpbjauwbj0ijNNEP7GfgXZp+9tdgeRYODeIVk0I4=
-code.cloudfoundry.org/volumedriver v0.73.0/go.mod h1:9aU2jfnzVXvnLPHMTYIMT5lN9Frwm3m0YqSHo10mcl0=
+code.cloudfoundry.org/volumedriver v0.74.0 h1:DfjowpIHenWfsVsivHyplSgTUzacP+4R0+SBRu2e+sc=
+code.cloudfoundry.org/volumedriver v0.74.0/go.mod h1:lFFzwJoWWr2JlWS+Ptp56FJGxf0DqmEVRAqvTSbtPPc=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
