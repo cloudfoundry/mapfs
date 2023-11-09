@@ -3,7 +3,7 @@ module code.cloudfoundry.org/mapfs
 require (
 	code.cloudfoundry.org/goshims v0.26.0
 	code.cloudfoundry.org/volumedriver v0.77.0
-	github.com/hanwen/go-fuse/v2 v2.4.1
+	github.com/hanwen/go-fuse/v2 v2.4.2
 	github.com/maxbrunsfeld/counterfeiter/v6 v6.7.0
 	github.com/onsi/ginkgo/v2 v2.13.0
 	github.com/onsi/gomega v1.30.0
