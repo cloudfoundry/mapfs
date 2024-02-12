@@ -1,5 +1,5 @@
-code.cloudfoundry.org/goshims v0.29.0 h1:NeOJjLiU0JvvY3N26pORS0goRmHvgAxxPnB5z+Hr8fk=
-code.cloudfoundry.org/goshims v0.29.0/go.mod h1:Jh/EFnOwyfLf92Eufmb6mhKat6StzyWxsMzxXjCS2X4=
+code.cloudfoundry.org/goshims v0.30.0 h1:hVYXO5vcCTxW5mcmtrNi/r3lPr1LyVAPZ8MX4heWz7k=
+code.cloudfoundry.org/goshims v0.30.0/go.mod h1:l8024gqm7ZS7azMXI1A6TjWQ0usk/wx7r2zqzkcBwG4=
 code.cloudfoundry.org/volumedriver v0.83.0 h1:Yza7zLnKGEwFNBFCGeCOuq0EPLe8BoNDIWGBnqT9nP8=
 code.cloudfoundry.org/volumedriver v0.83.0/go.mod h1:ByyWeHsvbyirC16KU2LVSV6Ok0DSep+DKHVASFkBFM8=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
@@ -50,8 +50,8 @@ github.com/tedsuo/ifrit v0.0.0-20230330192023-5cba443a66c4 h1:MGZzzxBuPuK4J0XQo+
 github.com/tedsuo/ifrit v0.0.0-20230330192023-5cba443a66c4/go.mod h1:eyZnKCc955uh98WQvzOm0dgAeLnf2O0Rz0LPoC5ze+0=
 golang.org/x/mod v0.14.0 h1:dGoOF9QVLYng8IHTm7BAyWqCqSheQ5pYWGhzW00YJr0=
 golang.org/x/mod v0.14.0/go.mod h1:hTbmBsO62+eylJbnUtE2MGJUyE7QWk4xUqPFrRgJ+7c=
-golang.org/x/net v0.20.0 h1:aCL9BSgETF1k+blQaYUBx9hJ9LOGP3gAVemcZlf1Kpo=
-golang.org/x/net v0.20.0/go.mod h1:z8BVo6PvndSri0LbOE3hAn0apkU+1YvI6E70E9jsnvY=
+golang.org/x/net v0.21.0 h1:AQyQV4dYCvJ7vGmJyKki9+PBdyvhkSd8EIx/qb0AYv4=
+golang.org/x/net v0.21.0/go.mod h1:bIjVDfnllIU7BJ2DNgfnXvpSvtn8VRwhlsaeUTyUS44=
 golang.org/x/sync v0.0.0-20201207232520-09787c993a3a/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
 golang.org/x/sync v0.6.0 h1:5BMeUDZ7vkXGfEr1x9B4bRcTH4lpkTkpdh0T/J+qjbQ=
 golang.org/x/sync v0.6.0/go.mod h1:Czt+wKu1gCyEFDUtn0jG5QVvpJ6rzVqr5aXyt9drQfk=
