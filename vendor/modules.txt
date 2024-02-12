@@ -32,16 +32,12 @@ github.com/hanwen/go-fuse/v2/fuse/pathfs
 github.com/hanwen/go-fuse/v2/internal
 github.com/hanwen/go-fuse/v2/internal/utimens
 github.com/hanwen/go-fuse/v2/splice
-# github.com/kr/text v0.2.0
-## explicit
 # github.com/maxbrunsfeld/counterfeiter/v6 v6.8.1
 ## explicit; go 1.20
 github.com/maxbrunsfeld/counterfeiter/v6
 github.com/maxbrunsfeld/counterfeiter/v6/arguments
 github.com/maxbrunsfeld/counterfeiter/v6/command
 github.com/maxbrunsfeld/counterfeiter/v6/generator
-# github.com/nxadm/tail v1.4.8
-## explicit; go 1.13
 # github.com/onsi/ginkgo/v2 v2.15.0
 ## explicit; go 1.20
 github.com/onsi/ginkgo/v2
@@ -78,8 +74,8 @@ github.com/onsi/gomega/matchers/support/goraph/edge
 github.com/onsi/gomega/matchers/support/goraph/node
 github.com/onsi/gomega/matchers/support/goraph/util
 github.com/onsi/gomega/types
-# github.com/tedsuo/ifrit v0.0.0-20230330192023-5cba443a66c4
-## explicit
+# github.com/tedsuo/ifrit v0.0.0-20230516164442-7862c310ad26
+## explicit; go 1.16
 github.com/tedsuo/ifrit
 github.com/tedsuo/ifrit/ginkgomon_v2
 # golang.org/x/mod v0.14.0
