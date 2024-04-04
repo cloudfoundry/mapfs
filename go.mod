@@ -25,4 +25,4 @@ require (
 	golang.org/x/tools v0.17.0 // indirect
 )
 
-go 1.22.1
+go 1.22.2
