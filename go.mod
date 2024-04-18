@@ -6,7 +6,7 @@ require (
 	github.com/hanwen/go-fuse/v2 v2.5.1
 	github.com/maxbrunsfeld/counterfeiter/v6 v6.8.1
 	github.com/onsi/ginkgo/v2 v2.17.1
-	github.com/onsi/gomega v1.32.0
+	github.com/onsi/gomega v1.33.0
 	github.com/tedsuo/ifrit v0.0.0-20230516164442-7862c310ad26
 	golang.org/x/sys v0.19.0
 	gopkg.in/yaml.v3 v3.0.1
