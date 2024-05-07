@@ -26,4 +26,4 @@ require (
 	golang.org/x/tools v0.20.0 // indirect
 )
 
-go 1.22.2
+go 1.22.3
