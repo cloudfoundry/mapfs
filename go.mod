@@ -5,7 +5,7 @@ require (
 	code.cloudfoundry.org/volumedriver v0.95.0
 	github.com/hanwen/go-fuse/v2 v2.5.1
 	github.com/maxbrunsfeld/counterfeiter/v6 v6.8.1
-	github.com/onsi/ginkgo/v2 v2.17.3
+	github.com/onsi/ginkgo/v2 v2.18.0
 	github.com/onsi/gomega v1.33.1
 	github.com/tedsuo/ifrit v0.0.0-20230516164442-7862c310ad26
 	golang.org/x/sys v0.20.0
@@ -23,7 +23,7 @@ require (
 	golang.org/x/net v0.25.0 // indirect
 	golang.org/x/sync v0.7.0 // indirect
 	golang.org/x/text v0.15.0 // indirect
-	golang.org/x/tools v0.20.0 // indirect
+	golang.org/x/tools v0.21.0 // indirect
 )
 
 go 1.22.3
