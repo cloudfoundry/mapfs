@@ -2,7 +2,7 @@ package perf_test
 
 import (
 	"fmt"
-	"io/ioutil"
+	"os"
 	"os/exec"
 	"testing"
 	"time"
@@ -40,7 +40,7 @@ var _ = AfterSuite(func() {
 })
 
 func writeDataToMountedDirectory(directory string) {
-	nativeWriteFile, err := ioutil.TempFile(directory, "perf_file")
+	nativeWriteFile, err := os.CreateTemp(directory, "perf_file")
 	Expect(err).NotTo(HaveOccurred())
 
 	defer func() {

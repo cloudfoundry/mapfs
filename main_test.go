@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -27,8 +26,8 @@ type failRunner struct {
 	StartCheck        string
 	StartCheckTimeout time.Duration
 	Cleanup           func()
-	session           *gexec.Session
-	sessionReady      chan struct{}
+	//	session           *gexec.Session
+	sessionReady chan struct{}
 }
 
 func (r failRunner) Run(sigChan <-chan os.Signal, ready chan<- struct{}) error {
@@ -57,7 +56,7 @@ func (r failRunner) Run(sigChan <-chan os.Signal, ready chan<- struct{}) error {
 
 	fmt.Fprintf(debugWriter, "spawned %s (pid: %d)\n", r.Command.Path, r.Command.Process.Pid)
 
-	r.session = session
+	//	r.session = session
 	if r.sessionReady != nil {
 		close(r.sessionReady)
 	}
@@ -103,7 +102,7 @@ func (r failRunner) Run(sigChan <-chan os.Signal, ready chan<- struct{}) error {
 			}
 
 			Expect(string(allOutput.Contents())).To(ContainSubstring(r.StartCheck))
-			Expect(session.ExitCode()).To(Not(Equal(0)), fmt.Sprintf("Expected process to exit with non-zero, got: 0"))
+			Expect(session.ExitCode()).To(Not(Equal(0)), "Expected process to exit with non-zero, got: 0")
 			return nil
 		}
 	}
@@ -163,9 +162,9 @@ var _ = Describe("mapfs Main", func() {
 		})
 
 		It("flock works", func() {
-			srcDir, err := ioutil.TempDir("", "src")
+			srcDir, err := os.MkdirTemp("", "src")
 			Expect(err).NotTo(HaveOccurred())
-			targetDir, err := ioutil.TempDir("", "target")
+			targetDir, err := os.MkdirTemp("", "target")
 			Expect(err).NotTo(HaveOccurred())
 			Expect(os.Chmod(srcDir, os.ModePerm)).To(Succeed())
 
