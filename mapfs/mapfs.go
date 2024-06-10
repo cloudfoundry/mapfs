@@ -193,7 +193,7 @@ func (fs *mapFileSystem) Unlink(name string, context *fuse.Context) (code fuse.S
 }
 
 func (fs *mapFileSystem) GetXAttr(name string, attribute string, context *fuse.Context) (data []byte, code fuse.Status) {
-	if fs.disableXAttrs == true {
+	if fs.disableXAttrs {
 		return nil, fuse.Status(syscall.ENOTSUP)
 	}
 

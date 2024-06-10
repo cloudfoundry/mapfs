@@ -1,7 +1,6 @@
 package perf_test
 
 import (
-	"io/ioutil"
 	"os"
 	"os/exec"
 
@@ -22,9 +21,9 @@ var _ = Describe("Perf", func() {
 	BeforeEach(func() {
 		var err error
 
-		nativeDirectory, err = ioutil.TempDir(os.TempDir(), "native")
+		nativeDirectory, err = os.MkdirTemp("", "native")
 		Expect(err).NotTo(HaveOccurred())
-		mapfsDirectory, err = ioutil.TempDir(os.TempDir(), "mapfs")
+		mapfsDirectory, err = os.MkdirTemp("", "mapfs")
 		Expect(err).NotTo(HaveOccurred())
 
 	})
