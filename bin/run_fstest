@@ -1,6 +1,6 @@
 #! /bin/bash -eu
 
-pushd fstest
+pushd "${FSTEST_DIR}"
   # remove all the tests that fail because of the way that mapfs works
   rm tests/chmod/00.t
   rm tests/chmod/05.t
@@ -54,7 +54,7 @@ pushd fstest
   make all
 popd
 
-pushd mapfs
+pushd repo/${DIR}
   go build -o /mapfs
 popd
 
@@ -65,7 +65,7 @@ chown 1000:1000 foo2
 sleep 1
 
 pushd foo1
-  prove -r ../fstest/
+  prove -r ../${FSTEST_DIR}/
 popd
 
 umount -l foo1
