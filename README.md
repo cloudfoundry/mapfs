@@ -1,36 +1,115 @@
-# mapfs
-Go-based [FUSE](https://en.wikipedia.org/wiki/Filesystem_in_Userspace) file system for uid mapping local file access
-designed to be used as part of [mapfs-release](https://github.com/cloudfoundry/mapfs-release).
+# Contributing
 
-In CloudFoundry [NFS volume services](https://github.com/cloudfoundry/nfs-volume-release),
-the [NFS driver](https://github.com/cloudfoundry/nfsv3driver) will start `mapfs` when the `uid` or `gid` parameters
-are specified when binding an NFS mount. MapFS will expose a FUSE filesystem that is mounted into the app container,
-and the app can read and write from. This is backed by an NFS mount.
-MapFS replicates file access so that as far as NFS is concerned, the file access is done
-with the `uid` and `gid` specified.
+See the [Contributing.md](./.github/CONTRIBUTING.md) for more
+information on how to contribute.
 
-# Performance
-Because an app can potentially go faster than NFS (which is limited by network bandwidth), it's possible for requests
-to stack up in MapFS while it waits for NFS to respond. Currently, [go-fuse](https://github.com/hanwen/go-fuse) does
-not implement backpressure or load shedding. For every request in-flight, a buffer and a goroutine will be created,
-so MapFS can consume high memory and processor when the app accesses the filesystem faster than NFS responds.
+# Working Group Charter
 
-# Configuration
-There is an optional configuration file that can be placed at `/var/vcap/jobs/mapfs/config/mapfs.yml` that will allow
-MapFS to be configured. Configuration keys are:
-- `debug` - enables go-fuse debug mode. Logs are written to `/var/vcap/sys/log/mapfs/mapfs.$$.log` where `$$` is the process ID.
-- `single_threaded` - enables go-fuse single threaded mode. Can reduce memory pressure, and may slow down access.
-- `cpu_profile` - writes a Go pprof CPU profile to the specified path.
-- `mem_profile` - when the process receives a `SIGUSR1` a Go pprof memory profile will be written to the path with a timestamp as a file suffix.
-- `soft_mem_limit` - soft memory limit in bytes. Equivalent to setting `GOMEMLIMIT` environment variable.
+This repository is maintained by [App Runtime
+Platform](https://github.com/cloudfoundry/community/blob/main/toc/working-groups/app-runtime-platform.md)
+under `Networking` area.
 
-The configuration file is read on startup. To restart MapFS just `kill -9` the existing
-process and the NFS Driver will start a new one. This may break running apps.
+# Contributing
 
-# Running tests
-```
-make test
-```
+See the [Contributing.md](./.github/CONTRIBUTING.md) for more
+information on how to contribute.
 
-# TODO
-REMOVE-me
+# Working Group Charter
+
+This repository is maintained by [App Runtime
+Platform](https://github.com/cloudfoundry/community/blob/main/toc/working-groups/app-runtime-platform.md)
+under `Networking` area.
+
+# Contributing
+
+See the [Contributing.md](./.github/CONTRIBUTING.md) for more
+information on how to contribute.
+
+# Working Group Charter
+
+This repository is maintained by [App Runtime
+Platform](https://github.com/cloudfoundry/community/blob/main/toc/working-groups/app-runtime-platform.md)
+under `Diego` area.
+
+# Contributing
+
+See the [Contributing.md](./.github/CONTRIBUTING.md) for more
+information on how to contribute.
+
+# Working Group Charter
+
+This repository is maintained by [App Runtime
+Platform](https://github.com/cloudfoundry/community/blob/main/toc/working-groups/app-runtime-platform.md)
+under `Networking` area.
+
+# Contributing
+
+See the [Contributing.md](./.github/CONTRIBUTING.md) for more
+information on how to contribute.
+
+# Working Group Charter
+
+This repository is maintained by [App Runtime
+Platform](https://github.com/cloudfoundry/community/blob/main/toc/working-groups/app-runtime-platform.md)
+under `Networking` area.
+
+# Contributing
+
+See the [Contributing.md](./.github/CONTRIBUTING.md) for more
+information on how to contribute.
+
+# Working Group Charter
+
+This repository is maintained by [Service
+Management](https://github.com/cloudfoundry/community/blob/main/toc/working-groups/service-management.md)
+under `Volume Services` area.
+
+# Contributing
+
+See the [Contributing.md](./.github/CONTRIBUTING.md) for more
+information on how to contribute.
+
+# Working Group Charter
+
+This repository is maintained by [App Runtime
+Platform](https://github.com/cloudfoundry/community/blob/main/toc/working-groups/app-runtime-platform.md)
+under `Networking` area.
+
+# Contributing
+
+See the [Contributing.md](./.github/CONTRIBUTING.md) for more
+information on how to contribute.
+
+# Working Group Charter
+
+This repository is maintained by [App Runtime
+Platform](https://github.com/cloudfoundry/community/blob/main/toc/working-groups/app-runtime-platform.md)
+under `Garden Containers` area.
+
+# Contributing
+
+See the [Contributing.md](./.github/CONTRIBUTING.md) for more
+information on how to contribute.
+
+# Working Group Charter
+
+This repository is maintained by [App Runtime
+Platform](https://github.com/cloudfoundry/community/blob/main/toc/working-groups/app-runtime-platform.md)
+under `Diego` area.
+
+# Contributing
+
+See the [Contributing.md](./.github/CONTRIBUTING.md) for more
+information on how to contribute.
+
+# Working Group Charter
+
+This repository is maintained by [App Runtime
+Platform](https://github.com/cloudfoundry/community/blob/main/toc/working-groups/app-runtime-platform.md)
+under `Networking` area.
+
+> \[!IMPORTANT\]
+>
+> Content in this file is managed by the [CI task
+> `sync-readme`](https://github.com/cloudfoundry/wg-app-platform-runtime-ci/blob/c83c224ad06515ed52f51bdadf6075f56300ec93/shared/tasks/sync-readme/metadata.yml)
+> and is generated by CI following a convention.
