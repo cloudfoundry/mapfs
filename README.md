@@ -45,10 +45,6 @@ This may break running apps.
 
     make test
 
-# TODO
-
-REMOVE-me
-
 # Contributing
 
 See the [Contributing.md](./.github/CONTRIBUTING.md) for more
