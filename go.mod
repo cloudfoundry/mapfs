@@ -8,7 +8,7 @@ require (
 	github.com/onsi/ginkgo/v2 v2.19.1
 	github.com/onsi/gomega v1.34.1
 	github.com/tedsuo/ifrit v0.0.0-20230516164442-7862c310ad26
-	golang.org/x/sys v0.22.0
+	golang.org/x/sys v0.23.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
